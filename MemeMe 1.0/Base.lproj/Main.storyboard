@@ -21,13 +21,17 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-6N-55C">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="9Dt-xc-Bsl"/>
+                                    <navigationItem id="9Dt-xc-Bsl">
+                                        <barButtonItem key="leftBarButtonItem" title="Share" id="b4J-Cb-dDD"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="7ax-Eh-uu3"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJQ-VD-xfB">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="C7U-mz-Yog"/>
+                                    <barButtonItem title="Camera" id="C7U-mz-Yog"/>
+                                    <barButtonItem title="Album" id="DFx-PL-tZZ"/>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SSS-jf-fnO">
