@@ -22,7 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="9Dt-xc-Bsl">
-                                        <barButtonItem key="leftBarButtonItem" title="Share" id="b4J-Cb-dDD"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Share" id="b4J-Cb-dDD">
+                                            <connections>
+                                                <action selector="shareMeme" destination="BYZ-38-t0r" id="zHw-Wd-Mcz"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="7ax-Eh-uu3"/>
                                     </navigationItem>
                                 </items>
@@ -79,6 +83,9 @@
                     <connections>
                         <outlet property="btnAlbum" destination="DFx-PL-tZZ" id="NWm-pp-son"/>
                         <outlet property="btnCamera" destination="C7U-mz-Yog" id="xhP-KQ-xZG"/>
+                        <outlet property="btnShare" destination="b4J-Cb-dDD" id="2cF-jx-mz0"/>
+                        <outlet property="txtFieldBtm" destination="dcO-2Q-221" id="Jqr-VG-WQi"/>
+                        <outlet property="txtFieldTop" destination="SSS-jf-fnO" id="vVO-sR-Feg"/>
                         <outlet property="viewImage" destination="cgN-an-QHN" id="opD-U7-blb"/>
                     </connections>
                 </viewController>
