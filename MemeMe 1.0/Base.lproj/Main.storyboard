@@ -30,8 +30,16 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJQ-VD-xfB">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Camera" id="C7U-mz-Yog"/>
-                                    <barButtonItem title="Album" id="DFx-PL-tZZ"/>
+                                    <barButtonItem title="Camera" id="C7U-mz-Yog">
+                                        <connections>
+                                            <action selector="pickCamera" destination="BYZ-38-t0r" id="p08-Nl-UG7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Album" id="DFx-PL-tZZ">
+                                        <connections>
+                                            <action selector="pickAlbum" destination="BYZ-38-t0r" id="b1C-gH-9ct"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SSS-jf-fnO">
@@ -68,6 +76,11 @@
                             <constraint firstItem="SSS-jf-fnO" firstAttribute="top" secondItem="jnC-6N-55C" secondAttribute="bottom" constant="30" id="unE-KG-31i"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnAlbum" destination="DFx-PL-tZZ" id="NWm-pp-son"/>
+                        <outlet property="btnCamera" destination="C7U-mz-Yog" id="xhP-KQ-xZG"/>
+                        <outlet property="viewImage" destination="cgN-an-QHN" id="opD-U7-blb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
