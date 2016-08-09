@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 struct MyMeme{
-    var textTop: String
-    var textBtm: String
+    var txtTop: String
+    var txtBtm: String
     var imageOrig: UIImage
     var imageFinal: UIImage
     
-    init(textTop: String, textBtm: String, imageOrig: UIImage, imageFinal:UIImage){
-        self.textTop = textTop
-        self.textBtm = textBtm
+    init(txtTop: String, txtBtm: String, imageOrig: UIImage, imageFinal:UIImage){
+        self.txtTop = txtTop
+        self.txtBtm = txtBtm
         self.imageOrig = imageOrig
         self.imageFinal = imageFinal
     }

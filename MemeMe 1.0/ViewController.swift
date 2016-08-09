@@ -17,9 +17,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var txtFieldBtm: UITextField!
     @IBOutlet weak var viewImage: UIImageView!
 
+    let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: 4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
+    
     override func viewDidLoad() {
         btnCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         btnShare.enabled = false
+        txtFieldTop.defaultTextAttributes = txtAttributes
+        txtFieldBtm.defaultTextAttributes = txtAttributes
+        txtFieldTop.textAlignment = NSTextAlignment.Center
+        txtFieldBtm.textAlignment = NSTextAlignment.Center
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
