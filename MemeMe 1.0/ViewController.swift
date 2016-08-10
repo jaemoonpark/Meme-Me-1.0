@@ -16,8 +16,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var txtFieldTop: UITextField!
     @IBOutlet weak var txtFieldBtm: UITextField!
     @IBOutlet weak var viewImage: UIImageView!
+    
+    @IBOutlet weak var cnstrTopTxtTop: NSLayoutConstraint!
+    @IBOutlet weak var cnstrTopTxtLeft: NSLayoutConstraint!
+    @IBOutlet weak var cnstrTopTxtRight: NSLayoutConstraint!
 
-    let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: 4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
+    let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
     
     override func viewDidLoad() {
         btnCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -26,6 +30,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.defaultTextAttributes = txtAttributes
         txtFieldTop.textAlignment = NSTextAlignment.Center
         txtFieldBtm.textAlignment = NSTextAlignment.Center
+        txtFieldTop.adjustsFontSizeToFitWidth = true
+        txtFieldBtm.adjustsFontSizeToFitWidth = true
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -50,7 +56,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareMeme(){
+        //resigning first repsonder so textfield does not unintentionally re-adjust
+        txtFieldTop.resignFirstResponder()
+        txtFieldBtm.resignFirstResponder()
         //storing original bounds
+        
+        //removing constraints so textfield can scale properly
+        self.view.removeConstraint(cnstrTopTxtTop)
+        self.view.removeConstraint(cnstrTopTxtLeft)
+        self.view.removeConstraint(cnstrTopTxtRight)
+        
+        
         let boundOrigImage = viewImage.bounds
         let boundOrigTopTxt = txtFieldTop.bounds
         let boundOrigBtmTxt = txtFieldBtm.bounds
@@ -60,6 +76,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: txtFieldTop.bounds.height)
         txtFieldBtm.bounds = CGRect(x: 0.0, y: viewImage.image!.size.height - txtFieldBtm.bounds.height, width: viewImage.image!.size.width, height: txtFieldBtm.bounds.height)
         
+        txtFieldTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
+        
+        //
+        //txtFieldTop.textAlignment = NSTextAlignment.Center
+        
+        
         //creating memed image
         UIGraphicsBeginImageContextWithOptions(viewImage.bounds.size, false, 1.0)
         viewImage.drawViewHierarchyInRect(viewImage.bounds, afterScreenUpdates: true)
@@ -68,12 +90,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         //test label
-        var tempLabelTop = UILabel.init()
-        tempLabelTop.adjustsFontSizeToFitWidth = true
-        tempLabelTop.text = txtFieldTop.text
-        tempLabelTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: viewImage.image!.size.height * 0.1157)
-        tempLabelTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
-        tempLabelTop.drawViewHierarchyInRect(tempLabelTop.bounds, afterScreenUpdates: true)
+//        var tempLabelTop = UILabel.init()
+//        tempLabelTop.adjustsFontSizeToFitWidth = true
+//        tempLabelTop.text = txtFieldTop.text
+//        tempLabelTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: viewImage.image!.size.height * 0.1157)
+//        tempLabelTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
+//        tempLabelTop.drawViewHierarchyInRect(tempLabelTop.bounds, afterScreenUpdates: true)
         
         //creating and saving mememed image to variable
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
