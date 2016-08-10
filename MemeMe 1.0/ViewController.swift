@@ -66,6 +66,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldTop.drawViewHierarchyInRect(txtFieldTop.bounds, afterScreenUpdates: true)
         txtFieldBtm.drawViewHierarchyInRect(txtFieldBtm.bounds, afterScreenUpdates: true)
         
+        
+        //test label
+        var tempLabelTop = UILabel.init()
+        tempLabelTop.adjustsFontSizeToFitWidth = true
+        tempLabelTop.text = txtFieldTop.text
+        tempLabelTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: viewImage.image!.size.height * 0.1157)
+        tempLabelTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
+        tempLabelTop.drawViewHierarchyInRect(tempLabelTop.bounds, afterScreenUpdates: true)
+        
         //creating and saving mememed image to variable
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

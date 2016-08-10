@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		A05815A91D58FFB50078BBAD /* MemeMe 1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemeMe 1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A05815AC1D58FFB50078BBAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A05815AE1D58FFB50078BBAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A05815AE1D58FFB50078BBAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		A05815B11D58FFB50078BBAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A05815B31D58FFB50078BBAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05815B61D58FFB50078BBAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -493,6 +493,7 @@
 				A05815D31D58FFB50078BBAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A05815D41D58FFB50078BBAD /* Build configuration list for PBXNativeTarget "MemeMe 1.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +502,7 @@
 				A05815D61D58FFB50078BBAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A05815D71D58FFB50078BBAD /* Build configuration list for PBXNativeTarget "MemeMe 1.0UITests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +511,7 @@
 				A05815D91D58FFB50078BBAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
