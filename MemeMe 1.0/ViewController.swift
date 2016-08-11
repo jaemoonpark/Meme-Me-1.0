@@ -20,6 +20,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cnstrTopTxtTop: NSLayoutConstraint!
     @IBOutlet weak var cnstrTopTxtLeft: NSLayoutConstraint!
     @IBOutlet weak var cnstrTopTxtRight: NSLayoutConstraint!
+    
+    @IBOutlet weak var cnstrBtmTxtBtm: NSLayoutConstraint!
+    @IBOutlet weak var cnstrBtmTxtLeft: NSLayoutConstraint!
+    @IBOutlet weak var cnstrBtmTxtRight: NSLayoutConstraint!
 
     let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
     
@@ -66,18 +70,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.removeConstraint(cnstrTopTxtLeft)
         self.view.removeConstraint(cnstrTopTxtRight)
         
+        self.view.removeConstraint(cnstrBtmTxtBtm)
+        self.view.removeConstraint(cnstrBtmTxtLeft)
+        self.view.removeConstraint(cnstrBtmTxtRight)
         
         let boundOrigImage = viewImage.bounds
         let boundOrigTopTxt = txtFieldTop.bounds
         let boundOrigBtmTxt = txtFieldBtm.bounds
         
+        
         //initializing and setting up bounds for meme capture
         viewImage.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: viewImage.image!.size.height)
         txtFieldTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: txtFieldTop.bounds.height)
-        txtFieldBtm.bounds = CGRect(x: 0.0, y: viewImage.image!.size.height - txtFieldBtm.bounds.height, width: viewImage.image!.size.width, height: txtFieldBtm.bounds.height)
+        txtFieldBtm.bounds = CGRect(x: 0.0, y: viewImage.image!.size.height - (viewImage.image!.size.height * 0.1157), width: viewImage.image!.size.width, height: txtFieldBtm.bounds.height)
         
+        print(viewImage.image!.size.height)
+        print(txtFieldBtm.bounds.height)
+        print(viewImage.image!.size.height - txtFieldBtm.bounds.height)
         txtFieldTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
-        
+        txtFieldBtm.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
+        print(viewImage.image!.size.height - txtFieldBtm.bounds.height)
         //
         //txtFieldTop.textAlignment = NSTextAlignment.Center
         

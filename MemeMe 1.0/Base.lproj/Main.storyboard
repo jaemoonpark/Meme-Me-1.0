@@ -84,6 +84,9 @@
                         <outlet property="btnAlbum" destination="DFx-PL-tZZ" id="NWm-pp-son"/>
                         <outlet property="btnCamera" destination="C7U-mz-Yog" id="xhP-KQ-xZG"/>
                         <outlet property="btnShare" destination="b4J-Cb-dDD" id="2cF-jx-mz0"/>
+                        <outlet property="cnstrBtmTxtBtm" destination="B1Q-0R-2eh" id="y2H-Fv-9Tp"/>
+                        <outlet property="cnstrBtmTxtLeft" destination="dAk-te-Nf5" id="hof-Qv-obi"/>
+                        <outlet property="cnstrBtmTxtRight" destination="L7U-xC-0Gm" id="8S9-qx-3oJ"/>
                         <outlet property="cnstrTopTxtLeft" destination="0AF-WJ-hbl" id="AMT-Of-R8W"/>
                         <outlet property="cnstrTopTxtRight" destination="6uW-dL-tXJ" id="xzk-o8-vAs"/>
                         <outlet property="cnstrTopTxtTop" destination="unE-KG-31i" id="Ww9-xz-i37"/>
