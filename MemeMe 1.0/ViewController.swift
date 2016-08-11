@@ -63,8 +63,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //resigning first repsonder so textfield does not unintentionally re-adjust
         txtFieldTop.resignFirstResponder()
         txtFieldBtm.resignFirstResponder()
-        //storing original bounds
         
+        //storing original constraints
+        let cnstrOrigTopTxtTop = cnstrTopTxtTop
+        let cnstrOrigTopTxtLeft = cnstrTopTxtLeft
+        let cnstrOrigTopTxtRight = cnstrTopTxtRight
+        let cnstrOrigBtmTxtBtm = cnstrBtmTxtBtm
+        let cnstrOrigBtmTxtLeft = cnstrBtmTxtLeft
+        let cnstrOrigBtmTxtRight = cnstrBtmTxtRight
+        
+        print(cnstrOrigBtmTxtLeft)
         //removing constraints so textfield can scale properly
         self.view.removeConstraint(cnstrTopTxtTop)
         self.view.removeConstraint(cnstrTopTxtLeft)
@@ -74,9 +82,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.removeConstraint(cnstrBtmTxtLeft)
         self.view.removeConstraint(cnstrBtmTxtRight)
         
+        print(cnstrOrigBtmTxtLeft)
+        
+        //storing original bounds
         let boundOrigImage = viewImage.bounds
         let boundOrigTopTxt = txtFieldTop.bounds
         let boundOrigBtmTxt = txtFieldBtm.bounds
+        
+        print(txtFieldBtm.bounds)
+        
         
         
         //initializing and setting up bounds for meme capture
@@ -84,14 +98,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldTop.bounds = CGRect(x: 0.0, y: 0.0, width: viewImage.image!.size.width, height: txtFieldTop.bounds.height)
         txtFieldBtm.bounds = CGRect(x: 0.0, y: viewImage.image!.size.height - (viewImage.image!.size.height * 0.1157), width: viewImage.image!.size.width, height: txtFieldBtm.bounds.height)
         
-        print(viewImage.image!.size.height)
-        print(txtFieldBtm.bounds.height)
-        print(viewImage.image!.size.height - txtFieldBtm.bounds.height)
+        print(txtFieldBtm.bounds)
+
+  
         txtFieldTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
         txtFieldBtm.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
-        print(viewImage.image!.size.height - txtFieldBtm.bounds.height)
-        //
-        //txtFieldTop.textAlignment = NSTextAlignment.Center
+        
         
         
         //creating memed image
@@ -113,10 +125,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        
+        
+        
         //restoring original bounds
         viewImage.bounds = boundOrigImage
         txtFieldTop.bounds = boundOrigTopTxt
         txtFieldBtm.bounds = boundOrigBtmTxt
+        
+        //restoring original constraints
+        cnstrTopTxtTop = cnstrOrigTopTxtTop
+        cnstrTopTxtLeft = cnstrOrigTopTxtLeft
+        cnstrTopTxtRight = cnstrOrigTopTxtRight
+        cnstrBtmTxtBtm = cnstrOrigBtmTxtBtm
+        cnstrBtmTxtLeft = cnstrOrigBtmTxtLeft
+        cnstrBtmTxtRight = cnstrOrigBtmTxtRight
+        
+        
+        //reactivating constraints
+        txtFieldTop.defaultTextAttributes = txtAttributes
+        txtFieldBtm.defaultTextAttributes = txtAttributes
+        
+        txtFieldTop.textAlignment = NSTextAlignment.Center
+        txtFieldBtm.textAlignment = NSTextAlignment.Center
+        
+        NSLayoutConstraint.activateConstraints([cnstrTopTxtTop, cnstrTopTxtLeft, cnstrTopTxtRight, cnstrBtmTxtBtm, cnstrBtmTxtLeft, cnstrBtmTxtRight])
+        
+        
+        
+        
+        print(txtFieldBtm.bounds)
         
         //presenting activity view controller
         let activityView = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
