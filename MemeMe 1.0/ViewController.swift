@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cnstrBtmTxtBtm: NSLayoutConstraint!
     @IBOutlet weak var cnstrBtmTxtLeft: NSLayoutConstraint!
     @IBOutlet weak var cnstrBtmTxtRight: NSLayoutConstraint!
+    
+    var shiftUp = false
 
     let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
     
@@ -38,10 +40,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.adjustsFontSizeToFitWidth = true
         txtFieldTop.delegate = self
         txtFieldBtm.delegate = self
+        self.subscribeToKeyboardNotification()
+        
+        //
+        let select = UITapGestureRecognizer(target: self, action: "defocusShift")
+        self.view.addGestureRecognizer(select)
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    func defocusShift(){
+        self.view.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,6 +68,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if textField.text == "TOP" || textField.text == "BOTTOM"{
             textField.text = ""
         }
+    }
+    
+    //dismiss keyboard when return is tapped
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func pickCamera(){
@@ -163,6 +185,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //makes sure textfields are visually accessible
         self.view.sendSubviewToBack(viewImage)
     }
+    
+    func subscribeToKeyboardNotification(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func showKeyboard(notification: NSNotification){
+        if(!shiftUp){
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            shiftUp = true
+        }
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat{
+        print("pie2.0")
+        let userInfo = notification.userInfo
+        let keyboardInfo = userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue
+        return keyboardInfo.CGRectValue().height
+    }
+    
+    
+    
 
 }
 
