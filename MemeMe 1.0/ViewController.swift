@@ -42,7 +42,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.delegate = self
         self.subscribeToKeyboardNotification()
         
-        //
+        self.subscribeToKeyboardHideNotification()
         let select = UITapGestureRecognizer(target: self, action: "defocusShift")
         self.view.addGestureRecognizer(select)
         
@@ -190,6 +190,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
     }
     
+    func subscribeToKeyboardHideNotification(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
     func showKeyboard(notification: NSNotification){
         if(!shiftUp){
             self.view.frame.origin.y -= getKeyboardHeight(notification)
@@ -197,8 +201,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func hideKeyboard(notification: NSNotification){
+        if(shiftUp){
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+            shiftUp = false
+        }
+    }
+    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
-        print("pie2.0")
         let userInfo = notification.userInfo
         let keyboardInfo = userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue
         return keyboardInfo.CGRectValue().height
