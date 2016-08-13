@@ -40,8 +40,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.adjustsFontSizeToFitWidth = true
         txtFieldTop.delegate = self
         txtFieldBtm.delegate = self
-        self.subscribeToKeyboardNotification()
-        
         self.subscribeToKeyboardHideNotification()
         let select = UITapGestureRecognizer(target: self, action: "defocusShift")
         self.view.addGestureRecognizer(select)
@@ -49,6 +47,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        // ensuring shift only occurs when bottom textfield is selected
+        if(textField == txtFieldBtm){
+            self.subscribeToKeyboardNotification()
+        }
+        return true
+    }
+    
     
     func defocusShift(){
         self.view.endEditing(true)
@@ -205,6 +212,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if(shiftUp){
             self.view.frame.origin.y += getKeyboardHeight(notification)
             shiftUp = false
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         }
     }
     
