@@ -127,7 +127,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let boundOrigTopTxt = txtFieldTop.bounds
         let boundOrigBtmTxt = txtFieldBtm.bounds
         
-        
+        print(txtFieldTop.textAlignment)
         
         
         //initializing and setting up bounds for meme capture
@@ -136,10 +136,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.bounds = CGRect(x: 0.0, y: viewImage.image!.size.height - (viewImage.image!.size.height * 0.1157), width: viewImage.image!.size.width, height: txtFieldBtm.bounds.height)
         txtFieldBtm.minimumFontSize = viewImage.image!.size.height * 0.1157
 
+        //applying new attributes
+        let tempAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)!]
+        txtFieldTop.defaultTextAttributes = tempAttributes
+        txtFieldBtm.defaultTextAttributes = tempAttributes
         
-        txtFieldTop.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
-        txtFieldBtm.font = UIFont.init(name: "HelveticaNeue-Bold", size: viewImage.image!.size.height * 0.1157)
-        
+        //restoring original text alignment
         txtFieldTop.textAlignment = NSTextAlignment.Center
         txtFieldBtm.textAlignment = NSTextAlignment.Center
         
@@ -169,7 +171,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         cnstrBtmTxtRight = cnstrOrigBtmTxtRight
         
         
-        //reactivating constraints
+        //reapplying original attributes
         txtFieldTop.defaultTextAttributes = txtAttributes
         txtFieldBtm.defaultTextAttributes = txtAttributes
         
@@ -177,6 +179,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldTop.textAlignment = NSTextAlignment.Center
         txtFieldBtm.textAlignment = NSTextAlignment.Center
         
+        //reactivating constraints
         NSLayoutConstraint.activateConstraints([cnstrTopTxtTop, cnstrTopTxtLeft, cnstrTopTxtRight, cnstrBtmTxtBtm, cnstrBtmTxtLeft, cnstrBtmTxtRight])
         
         
