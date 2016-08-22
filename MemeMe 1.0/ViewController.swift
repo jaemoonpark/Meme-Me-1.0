@@ -30,6 +30,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         btnCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         btnShare.enabled = false
         txtFieldTop.defaultTextAttributes = txtAttributes
@@ -43,9 +48,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.subscribeToKeyboardHideNotification()
         let select = UITapGestureRecognizer(target: self, action: "defocusShift")
         self.view.addGestureRecognizer(select)
-        
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -58,6 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     func defocusShift(){
+        print("pie")
         self.view.endEditing(true)
     }
     
@@ -209,6 +212,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func hideKeyboard(notification: NSNotification){
+        print("1")
         if(shiftUp){
             self.view.frame.origin.y += getKeyboardHeight(notification)
             shiftUp = false
