@@ -30,11 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let txtAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(), NSStrokeWidthAttributeName: -4.0, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "HelveticaNeue-Bold", size: 50.0)!]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         btnCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         btnShare.enabled = false
         txtFieldTop.defaultTextAttributes = txtAttributes
@@ -45,9 +40,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.adjustsFontSizeToFitWidth = true
         txtFieldTop.delegate = self
         txtFieldBtm.delegate = self
-        self.subscribeToKeyboardHideNotification()
         let select = UITapGestureRecognizer(target: self, action: "defocusShift")
         self.view.addGestureRecognizer(select)
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.subscribeToKeyboardHideNotification()
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -192,6 +192,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         viewImage.image = image
         dismissViewControllerAnimated(true, completion: nil)
         btnShare.enabled = true
+        print("pie")
         //makes sure textfields are visually accessible
         self.view.sendSubviewToBack(viewImage)
     }
@@ -209,11 +210,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.view.frame.origin.y -= getKeyboardHeight(notification)
             shiftUp = true
         }
+        print(getKeyboardHeight(notification))
     }
     
     func hideKeyboard(notification: NSNotification){
         print("1")
+        
+        print(shiftUp)
         if(shiftUp){
+            print(getKeyboardHeight(notification))
             self.view.frame.origin.y += getKeyboardHeight(notification)
             shiftUp = false
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
