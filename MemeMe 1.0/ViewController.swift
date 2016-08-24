@@ -36,8 +36,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         txtFieldBtm.defaultTextAttributes = txtAttributes
         txtFieldTop.textAlignment = NSTextAlignment.Center
         txtFieldBtm.textAlignment = NSTextAlignment.Center
-        txtFieldTop.adjustsFontSizeToFitWidth = true
-        txtFieldBtm.adjustsFontSizeToFitWidth = true
+//        txtFieldTop.adjustsFontSizeToFitWidth = true
+//        txtFieldBtm.adjustsFontSizeToFitWidth = true
         txtFieldTop.delegate = self
         txtFieldBtm.delegate = self
         let select = UITapGestureRecognizer(target: self, action: "defocusShift")
@@ -60,7 +60,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     func defocusShift(){
-        print("pie")
         self.view.endEditing(true)
     }
     
@@ -182,7 +181,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //reactivating constraints
         NSLayoutConstraint.activateConstraints([cnstrTopTxtTop, cnstrTopTxtLeft, cnstrTopTxtRight, cnstrBtmTxtBtm, cnstrBtmTxtLeft, cnstrBtmTxtRight])
         
-        
+        txtFieldTop.adjustsFontSizeToFitWidth = true
+        txtFieldBtm.adjustsFontSizeToFitWidth = true
 
         
         //presenting activity view controller
